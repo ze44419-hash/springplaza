@@ -1,0 +1,8 @@
+/* ===== Admin → Menu ===== */
+.page { display: grid; gap: 20px; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; }
+.tab { flex: none; min-height: 46px; padding: 0 22px; border: 0; border-radius: 14px; background: var(--surface); font-weight: 700; font-size: 1.02rem; box-shadow: inset 0 0 0 2px var(--petal-200); cursor: pointer; }
+.tabOn { background: var(--blossom-dark); color: #fff; box-shadow: none; }
+.item { display: flex; align-items: center; gap: 12px; }
+.itemImg { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; }
+.itemLetter { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; background: var(--petal-100); color: var(--fern-soft); font-weight: 800; }

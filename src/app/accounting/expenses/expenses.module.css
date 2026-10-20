@@ -1,0 +1,12 @@
+/* ===== Accounting → Expenses ===== */
+.page { display: grid; gap: 18px; }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.8rem; font-weight: 800; }
+.total { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin: 0; font-weight: 700; color: var(--bark-500); }
+.totalValue { font-family: var(--font-display-stack); font-size: 1.6rem; font-weight: 800; color: var(--bark); }
+.tableWrap { overflow-x: auto; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.table { width: 100%; min-width: 640px; border-collapse: collapse; }
+.table thead { border-bottom: 2px solid var(--petal-100); }
+.table tbody tr + tr { border-top: 2px solid var(--petal-100); }
+.actions { display: flex; justify-content: flex-end; gap: 4px; }
+.form { display: grid; gap: 16px; }

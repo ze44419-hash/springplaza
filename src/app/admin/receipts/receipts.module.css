@@ -1,0 +1,35 @@
+/* ===== Admin → Receipt designer — page-specific styles =====
+   Two columns: settings on the start side, live paper preview on the end side (sticky). */
+.page { display: grid; gap: 20px; }
+.kinds { display: flex; flex-wrap: wrap; gap: 8px; }
+.kind { min-height: 48px; padding: 0 22px; border: 0; border-radius: 14px; background: var(--surface); font-weight: 700; font-size: 1.02rem; box-shadow: inset 0 0 0 2px var(--petal-200); cursor: pointer; }
+.kindOn { background: var(--blossom-dark); color: #fff; box-shadow: none; }
+.intro { margin: 0; color: var(--bark-500); }
+
+.split { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1024px) { .split { grid-template-columns: minmax(0, 1fr) 400px; } }
+
+.form { display: grid; gap: 16px; }
+.group { padding: 18px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); display: grid; gap: 14px; }
+.groupTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.2rem; font-weight: 700; }
+.two { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 520px) { .two { grid-template-columns: 1fr; } }
+.checks { display: grid; gap: 4px 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 520px) { .checks { grid-template-columns: 1fr; } }
+.check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; }
+.check input { width: 20px; height: 20px; accent-color: var(--fern); }
+.seg { display: inline-flex; padding: 4px; gap: 4px; background: var(--petal-100); border-radius: 14px; }
+.segBtn { min-height: 40px; padding: 0 16px; border: 0; border-radius: 10px; background: transparent; font-weight: 700; color: var(--bark-500); cursor: pointer; }
+.segOn { background: var(--surface); color: var(--bark); box-shadow: var(--shadow-sm); }
+.textarea { min-height: 96px; padding-top: 12px; resize: vertical; line-height: 1.7; }
+.logoRow { display: flex; align-items: center; gap: 12px; }
+.logoThumb { width: 64px; height: 64px; object-fit: contain; border-radius: 12px; background: var(--petal-100); filter: grayscale(1); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.previewCol { position: sticky; top: 96px; display: grid; gap: 12px; }
+.previewHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.previewTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.1rem; font-weight: 700; }
+.desk { display: flex; justify-content: center; padding: 20px 12px; border-radius: var(--radius-lg); background: repeating-linear-gradient(45deg, var(--desk-a), var(--desk-a) 10px, var(--desk-b) 10px, var(--desk-b) 20px); overflow-x: auto; }
+.paperSheet { background: #fff; padding: 10px 6px 14px; box-shadow: 0 10px 30px -12px rgba(38, 33, 47, .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 96% 100%, 92% calc(100% - 8px), 88% 100%, 84% calc(100% - 8px), 80% 100%, 76% calc(100% - 8px), 72% 100%, 68% calc(100% - 8px), 64% 100%, 60% calc(100% - 8px), 56% 100%, 52% calc(100% - 8px), 48% 100%, 44% calc(100% - 8px), 40% 100%, 36% calc(100% - 8px), 32% 100%, 28% calc(100% - 8px), 24% 100%, 20% calc(100% - 8px), 16% 100%, 12% calc(100% - 8px), 8% 100%, 4% calc(100% - 8px), 0 100%); }
+.saved { padding: 10px 14px; border-radius: 12px; background: var(--fern-light); color: var(--fern-ink); font-weight: 700; }
+.code { display: block; padding: 10px 12px; border-radius: 12px; background: var(--petal-100); font-size: .78rem; line-height: 1.6; word-break: break-all; user-select: all; }

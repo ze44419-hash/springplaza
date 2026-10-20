@@ -1,0 +1,23 @@
+/* ===== Photo sessions ===== */
+.content { max-width: 960px; margin: 0 auto; padding: 16px; }
+@media (min-width: 640px) { .content { padding: 24px; } }
+.page { display: grid; gap: 16px; }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+.tabs { display: flex; gap: 8px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.kpi { padding: 14px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.kpi p { margin: 0; }
+.k { font-size: .85rem; font-weight: 700; color: var(--bark-400); }
+.v { font-size: 1.25rem; font-weight: 800; }
+.list { display: grid; gap: 10px; }
+.card { display: grid; gap: 10px; padding: 14px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.cardCancelled { opacity: .55; }
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.name { margin: 0; font-weight: 800; font-size: 1.05rem; }
+.when { font-weight: 700; color: var(--bark-500); }
+.nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.form { display: grid; gap: 12px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.note { margin: 0; font-size: .9rem; color: var(--bark-500); }

@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Design tokens (shared by Tailwind classes AND every page's CSS module) ----------
+   Colours are stored as RGB channels (--c-*) so Tailwind can add opacity; --name is the ready-to-use colour.
+   Night mode = `data-theme="dark"` on <html> (set before first paint by the inline script in layout.tsx). */
+:root {
+  color-scheme: light;
+  --c-surface: 255 255 255;
+  --c-petal: 247 245 251; --c-petal-100: 238 233 246; --c-petal-200: 224 217 238;
+  --c-bark: 38 33 47; --c-bark-500: 90 83 103; --c-bark-400: 133 126 146;
+  --c-fern: 46 115 88; --c-fern-dark: 31 84 64; --c-fern-hover: 31 84 64; --c-fern-ink: 31 84 64; --c-fern-light: 221 240 230;
+  --c-blossom: 226 85 123; --c-blossom-dark: 193 58 99; --c-blossom-ink: 193 58 99; --c-blossom-light: 252 227 234;
+  --c-sun: 233 169 58; --c-sun-ink: 138 90 0; --c-sun-light: 252 240 213;
+  --c-danger: 180 35 24; --c-danger-light: 253 236 234;
+
+  --surface: rgb(var(--c-surface));
+  --petal: rgb(var(--c-petal)); --petal-100: rgb(var(--c-petal-100)); --petal-200: rgb(var(--c-petal-200));
+  --bark: rgb(var(--c-bark)); --bark-500: rgb(var(--c-bark-500)); --bark-400: rgb(var(--c-bark-400));
+  --fern: rgb(var(--c-fern)); --fern-dark: rgb(var(--c-fern-dark)); --fern-ink: rgb(var(--c-fern-ink)); --fern-light: rgb(var(--c-fern-light));
+  --blossom: rgb(var(--c-blossom)); --blossom-dark: rgb(var(--c-blossom-dark)); --blossom-ink: rgb(var(--c-blossom-ink)); --blossom-light: rgb(var(--c-blossom-light));
+  --sun: rgb(var(--c-sun)); --sun-ink: rgb(var(--c-sun-ink)); --sun-light: rgb(var(--c-sun-light));
+  --danger: rgb(var(--c-danger)); --danger-light: rgb(var(--c-danger-light));
+
+  /* soft washes used by cards / columns / decorative letters */
+  --fern-wash: #f2faf6; --sun-wash: #fffdf6;
+  --tint-fern: rgba(221, 240, 230, .5);
+  --fern-edge: rgba(46, 115, 88, .5); --fern-soft: rgba(46, 115, 88, .4);
+  --col-bg: rgba(238, 233, 246, .7);
+  --desk-a: #e9e5f2; --desk-b: #efebf7;
+
+  --radius: 18px; --radius-lg: 24px;
+  --shadow-sm: 0 1px 2px rgba(38,33,47,.06), 0 1px 1px rgba(38,33,47,.04);
+  --shadow-md: 0 8px 24px -10px rgba(38,33,47,.22);
+  --shadow-lg: 0 24px 60px -24px rgba(38,33,47,.35);
+  --font-display-stack: var(--font-display), 'Cairo', Tahoma, system-ui, sans-serif;
+  --font-body-stack: var(--font-body), Tahoma, system-ui, sans-serif;
+}
+
+/* ---------- Night mode ---------- */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-surface: 20 26 23;
+  --c-petal: 12 16 14; --c-petal-100: 28 36 32; --c-petal-200: 44 55 50;
+  --c-bark: 233 240 236; --c-bark-500: 177 190 183; --c-bark-400: 130 145 137;
+  --c-fern: 46 115 88; --c-fern-dark: 31 84 64; --c-fern-hover: 56 138 106; --c-fern-ink: 126 211 174; --c-fern-light: 22 50 39;
+  --c-blossom: 226 85 123; --c-blossom-dark: 193 58 99; --c-blossom-ink: 255 150 178; --c-blossom-light: 58 24 36;
+  --c-sun: 233 169 58; --c-sun-ink: 244 196 100; --c-sun-light: 56 42 14;
+  --c-danger: 255 138 128; --c-danger-light: 62 24 22;
+
+  --fern-wash: #11261e; --sun-wash: #2a220c;
+  --tint-fern: rgba(22, 50, 39, .75);
+  --fern-edge: rgba(126, 211, 174, .45); --fern-soft: rgba(126, 211, 174, .35);
+  --col-bg: rgba(28, 36, 32, .55);
+  --desk-a: #161d1a; --desk-b: #1c2420;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 8px 24px -10px rgba(0,0,0,.7);
+  --shadow-lg: 0 24px 60px -24px rgba(0,0,0,.85);
+}
+
+/* smooth cross-fade for ~0.35s while the user flips the theme (class added by useTheme) */
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease, fill .3s ease, stroke .3s ease !important;
+}
+
+/* ---------- Arabic typography ----------
+   Arabic is a connected script: never letter-space it, never uppercase it, no italics, and give it
+   more leading and a slightly larger size than Latin text so diacritics and dots stay legible. */
+html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+html, body { background: var(--petal); color: var(--bark); }
+::selection { background: rgb(var(--c-fern) / .35); }
+body {
+  font-family: var(--font-body-stack); line-height: 1.7; letter-spacing: 0; font-weight: 500;
+  font-kerning: normal; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none;
+}
+h1, h2, h3, .font-display { font-family: var(--font-display-stack); line-height: 1.35; letter-spacing: 0; }
+input, select, textarea, button { font: inherit; letter-spacing: 0; }
+input::placeholder { color: var(--bark-400); opacity: 1; }
+em, i, .italic { font-style: normal; }          /* Arabic has no italic: browsers fake a slanted, ugly one */
+*:focus-visible { outline: 3px solid var(--blossom); outline-offset: 2px; }
+:root[data-theme='dark'] ::-webkit-scrollbar { width: 10px; height: 10px; }
+:root[data-theme='dark'] ::-webkit-scrollbar-thumb { background: var(--petal-200); border-radius: 999px; border: 2px solid var(--petal); }
+/* digits/latin inside Arabic text keep their own direction (prices, order numbers, emails) */
+bdi, .num { unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+
+@layer components {
+  .btn { @apply inline-flex min-h-[48px] select-none items-center justify-center gap-2 rounded-2xl px-5 font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-fern text-white shadow-sm hover:bg-fern-hover; }
+  .btn-accent { @apply btn bg-blossom-dark text-white hover:bg-[#a92f54]; }
+  .btn-ghost { @apply btn border-2 border-petal-200 bg-surface text-bark hover:bg-petal-100; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .skeleton { @apply animate-pulse rounded-xl bg-petal-100; }
+  .btn-sm { @apply min-h-[40px] rounded-xl px-3 text-sm; }
+  .input { @apply min-h-[48px] w-full rounded-2xl border-2 border-petal-200 bg-surface px-4 text-base text-bark outline-none transition focus:border-fern; }
+  .label { @apply mb-1.5 block text-sm font-semibold text-bark-500; }
+  .card { @apply rounded-xl2 border-2 border-petal-200 bg-surface; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold; }
+  .th { @apply px-3 py-2 text-start text-xs font-bold text-bark-400; }
+  .td { @apply px-3 py-3 text-sm; }
+}
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(-14px) scale(.97); } to { opacity: 1; transform: none; } }
+.animate-toast { animation: toast-in .28s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes ring { 0%,100% { box-shadow: 0 0 0 0 rgba(226,85,123,.55); } 50% { box-shadow: 0 0 0 10px rgba(226,85,123,0); } }
+.ring-pulse { animation: ring 1.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .animate-toast, .ring-pulse { animation: none; } * { scroll-behavior: auto !important; } }
+
+/* ---------- Thermal receipt / report printing (58 mm & 80 mm rolls) ---------- */
+#print-root { display: none; }
+.paper { margin: 0 auto; color: #000; background: #fff; font-family: var(--font-body-stack); font-size: var(--paper-fs, 13px); font-weight: 600; line-height: 1.55; }
+.paper-58 { width: 48mm; }   /* 58 mm roll ≈ 48 mm printable */
+.paper-80 { width: 72mm; }   /* 80 mm roll ≈ 72 mm printable */
+.paper h1 { font-size: calc(var(--paper-fs, 13px) + 5px); font-weight: 800; text-align: center; margin: 0; }
+.paper .center { text-align: center; }
+.paper .row { display: flex; justify-content: space-between; gap: 6px; }
+.paper .row > span:first-child { flex: 1; min-width: 0; word-break: break-word; }
+.paper .row > span:last-child { white-space: nowrap; }
+.paper .sub { padding-inline-start: 10px; font-size: calc(var(--paper-fs, 13px) - 1px); }
+.paper .rule { border-top: 1px dashed #000; margin: 6px 0; }
+.paper .rule.solid { border-top-style: solid; } .paper .rule.double { border-top: 3px double #000; } .paper .rule.none { border-top: 0; margin: 4px 0; }
+.paper .copy { break-after: page; padding-bottom: 6px; } .paper .copy:last-child { break-after: auto; }
+.paper .logo { display: block; margin: 0 auto 6px; max-width: 70%; max-height: 22mm; filter: grayscale(1) contrast(1.4); }
+.paper .big { font-size: calc(var(--paper-fs, 13px) + 3px); font-weight: 800; }
+
+@media print {
+  html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+  #app-root { display: none !important; }
+  #print-root { display: block !important; }
+  .paper { break-inside: avoid; }
+}

@@ -1,0 +1,20 @@
+/* Day / night switch. Icons are swapped with CSS on <html data-theme>, so there is no flash of the wrong icon before hydration. */
+.btn { position: relative; display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; border-radius: 14px; cursor: pointer; overflow: hidden; transition: background-color .2s, transform .12s, box-shadow .2s; }
+.btn:active { transform: scale(.92); }
+.btn:focus-visible { outline: 3px solid var(--blossom); outline-offset: 2px; }
+
+/* default look: matches the app header (.btn-ghost) */
+.solid { border: 2px solid var(--petal-200); background: var(--surface); color: var(--bark); }
+.solid:hover { background: var(--petal-100); }
+/* glass look: sits on top of the dark/light gradient on the login page */
+.glass { border: 1px solid rgb(var(--glass-ink, 255 255 255) / .18); background: rgb(var(--glass-ink, 255 255 255) / .08); color: rgb(var(--glass-ink, 255 255 255) / .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.glass:hover { background: rgb(var(--glass-ink, 255 255 255) / .16); }
+:global([data-theme='light']) .glass { --glass-ink: 38 33 47; background: rgba(255, 255, 255, .7); border-color: rgba(38, 33, 47, .12); }
+:global([data-theme='light']) .glass:hover { background: #fff; }
+
+.sun, .moon { position: absolute; transition: transform .45s cubic-bezier(.2, .9, .3, 1.2), opacity .25s; }
+.sun { color: #e9a93a; transform: rotate(0) scale(1); opacity: 1; }
+.moon { color: #9fc5ff; transform: rotate(-90deg) scale(.4); opacity: 0; }
+:global([data-theme='dark']) .sun { transform: rotate(90deg) scale(.4); opacity: 0; }
+:global([data-theme='dark']) .moon { transform: rotate(0) scale(1); opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .sun, .moon, .btn { transition: none; } }

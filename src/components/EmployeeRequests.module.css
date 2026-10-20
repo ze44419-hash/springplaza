@@ -1,0 +1,9 @@
+/* ===== إشعار الطلبات الشخصية عند الموظف ===== */
+.wrap { display: grid; gap: 10px; padding: 12px 16px 0; max-width: 1152px; margin: 0 auto; }
+.card { display: grid; gap: 10px; padding: 14px 16px; background: var(--sun-light); border: 2px solid var(--sun); border-radius: var(--radius-lg); }
+.head { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 800; }
+.sum { margin: 0; color: var(--bark-500); }
+.amount { font-family: var(--font-display-stack); font-size: 1.4rem; font-weight: 800; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.grow { flex: 1; min-height: 48px; }
+.dues { margin: 0; font-size: .9rem; color: var(--bark-500); }

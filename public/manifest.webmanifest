@@ -1,0 +1,9 @@
+{
+  "name": "سبرينج بلازا كافيه",
+  "short_name": "سبرينج بلازا",
+  "start_url": "/", "lang": "ar", "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#F7F5FB",
+  "theme_color": "#2E7358",
+  "icons": [{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

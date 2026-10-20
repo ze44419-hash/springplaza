@@ -1,0 +1,47 @@
+/* Glass sign-in card (adapted from "modern-stunning-sign-in"). Dark = frosted smoke glass, light = frosted white glass.
+   Arabic rules: no letter-spacing, real labels at readable size, large touch targets. */
+.card {
+  --ink: 255 255 255; --field: rgba(255, 255, 255, .08); --field-hover: rgba(255, 255, 255, .12); --edge: rgba(255, 255, 255, .1);
+  position: relative; z-index: 10; width: 100%; max-width: 420px; padding: 36px 32px 28px; display: flex; flex-direction: column; align-items: center;
+  border-radius: 28px; border: 1px solid var(--edge);
+  background: linear-gradient(to left, rgba(255, 255, 255, .09), rgba(18, 18, 18, .72));
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 30px 70px -28px rgba(0, 0, 0, .85), inset 0 1px 0 rgba(255, 255, 255, .08);
+  color: rgb(var(--ink));
+}
+:global([data-theme='light']) .card {
+  --ink: 38 33 47; --field: rgba(38, 33, 47, .05); --field-hover: rgba(38, 33, 47, .08); --edge: rgba(255, 255, 255, .9);
+  background: linear-gradient(to left, rgba(255, 255, 255, .92), rgba(255, 255, 255, .62));
+  box-shadow: 0 30px 70px -30px rgba(38, 33, 47, .35), 0 0 0 1px rgba(38, 33, 47, .06);
+}
+
+.logo { display: grid; place-items: center; width: 68px; height: 68px; margin-bottom: 18px; border-radius: 22px; background: rgb(var(--ink) / .08); box-shadow: 0 10px 30px -10px rgba(46, 115, 88, .7); }
+.eyebrow { margin: 0 0 4px; font-size: .95rem; font-weight: 600; color: rgb(var(--ink) / .62); }
+.title { margin: 0 0 28px; font-family: var(--font-display-stack); font-size: 2.3rem; font-weight: 800; line-height: 1.2; text-align: center; }
+.accent { color: #f3a6bb; }
+:global([data-theme='light']) .accent { color: var(--blossom-dark); }
+
+.form { display: flex; flex-direction: column; width: 100%; gap: 16px; }
+.fields { display: flex; flex-direction: column; gap: 14px; }
+.label { display: block; margin-bottom: 6px; font-size: .95rem; font-weight: 700; color: rgb(var(--ink) / .78); }
+.inputWrap { position: relative; }
+.input { width: 100%; min-height: 52px; padding: 0 20px; border: 1px solid transparent; border-radius: 14px; outline: none; background: var(--field); color: rgb(var(--ink)); font-size: 1rem; text-align: start; transition: background-color .2s, border-color .2s, box-shadow .2s; }
+.input::placeholder { color: rgb(var(--ink) / .4); }
+.input:hover { background: var(--field-hover); }
+.input:focus { border-color: rgb(var(--ink) / .35); box-shadow: 0 0 0 3px rgba(74, 201, 150, .28); }
+.inputPad { padding-inline-end: 52px; }
+.eye { position: absolute; inset-block: 0; inset-inline-end: 6px; display: grid; place-items: center; width: 44px; border: 0; border-radius: 10px; background: transparent; color: rgb(var(--ink) / .6); cursor: pointer; }
+.eye:hover { color: rgb(var(--ink)); }
+
+.error { margin: 0; padding: 10px 14px; border-radius: 12px; background: rgba(226, 85, 123, .16); border: 1px solid rgba(226, 85, 123, .35); color: #ffd3de; font-weight: 600; font-size: .95rem; }
+:global([data-theme='light']) .error { color: #a3153f; background: rgba(226, 85, 123, .12); }
+
+.rule { width: 100%; margin: 4px 0; border: 0; border-top: 1px solid rgb(var(--ink) / .1); }
+.submit { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; border: 0; border-radius: 999px; background: linear-gradient(135deg, #3a9a77, #2e7358); color: #fff; font-size: 1.15rem; font-weight: 800; cursor: pointer; box-shadow: 0 14px 30px -12px rgba(46, 115, 88, .9), inset 0 1px 0 rgba(255, 255, 255, .25); transition: transform .12s, filter .2s, box-shadow .2s; }
+.submit:hover { filter: brightness(1.1); }
+.submit:active { transform: scale(.98); }
+.submit:disabled { cursor: wait; opacity: .75; }
+.submit:focus-visible { outline: 3px solid #f3a6bb; outline-offset: 3px; }
+
+.footer { margin: 18px 0 0; font-size: .92rem; text-align: center; color: rgb(var(--ink) / .55); }
+@media (max-width: 480px) { .card { padding: 28px 20px 22px; border-radius: 24px; } .title { font-size: 2rem; } }

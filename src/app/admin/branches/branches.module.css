@@ -1,0 +1,10 @@
+/* ===== الفروع والمسؤولين ===== */
+.page { display: grid; gap: 22px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+.h2 { margin: 0 0 8px; font-family: var(--font-display-stack); font-size: 1.3rem; font-weight: 700; }
+.form { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; padding: 14px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.box { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 2px solid var(--petal-100); }
+.row:last-child { border-bottom: 0; }
+.chip2 { font-size: .75rem; padding: 2px 10px; border-radius: 999px; background: var(--petal-100); color: var(--bark-500); }
+.muted { margin: 0; padding: 14px 16px; color: var(--bark-500); }

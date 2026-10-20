@@ -1,0 +1,54 @@
+/* ===== Hall shell + calendar page ===== */
+.content { max-width: 1152px; margin: 0 auto; padding: 16px; }
+@media (min-width: 640px) { .content { padding: 24px; } }
+
+.page { display: grid; gap: 20px; }
+@media (min-width: 1024px) { .page { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-items: start; } }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; grid-column: 1 / -1; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+
+/* --- calendar card --- */
+.cal { padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.calTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.month { margin: 0; font-family: var(--font-display-stack); font-size: 1.35rem; font-weight: 800; }
+.navBtn { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--petal-200); border-radius: 14px; background: var(--surface); color: var(--bark); cursor: pointer; }
+.navBtn:hover { background: var(--petal-100); }
+.grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.dow { padding: 4px 0; text-align: center; font-size: .78rem; font-weight: 800; color: var(--bark-400); }
+.day { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 2px; min-height: 64px; padding: 6px; border: 2px solid var(--petal-200); border-radius: 14px; background: var(--surface); color: var(--bark); text-align: start; cursor: pointer; }
+.day:hover { border-color: var(--fern); }
+.empty { border: 0; background: transparent; cursor: default; }
+.empty:hover { border: 0; }
+.num { font-weight: 800; font-size: .95rem; }
+.past { opacity: .6; }
+.today .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 999px; background: var(--fern); color: #fff; }
+.free { background: var(--fern-wash); }
+.pending { background: var(--sun-light); border-color: var(--sun); }
+.confirmed { background: var(--blossom-light); border-color: var(--blossom); }
+.completed { background: var(--fern-light); border-color: var(--fern); }
+.who { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .7rem; font-weight: 700; line-height: 1.3; }
+@media (max-width: 520px) { .day { min-height: 52px; padding: 4px; } .who { display: none; } }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; font-size: .82rem; font-weight: 600; color: var(--bark-500); }
+.dot { display: inline-block; width: 12px; height: 12px; margin-inline-end: 6px; border: 2px solid var(--petal-200); border-radius: 4px; vertical-align: -1px; }
+
+/* --- upcoming list --- */
+.side { display: grid; gap: 10px; }
+.sideTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.3rem; font-weight: 700; }
+.list { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.item { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border: 0; border-bottom: 2px solid var(--petal-100); background: transparent; color: inherit; text-align: start; cursor: pointer; }
+.item:last-child { border-bottom: 0; }
+.item:hover { background: var(--petal-100); }
+.itemName { margin: 0; font-weight: 700; }
+.itemMeta { margin: 0; font-size: .82rem; color: var(--bark-500); }
+.itemTotal { font-weight: 800; white-space: nowrap; }
+
+/* --- booking details dialog --- */
+.detail { display: grid; gap: 14px; }
+.kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+.k { margin: 0; font-size: .78rem; font-weight: 700; color: var(--bark-400); }
+.v { margin: 0; font-weight: 700; }
+.lines { overflow: hidden; border: 2px solid var(--petal-200); border-radius: var(--radius); }
+.line { display: flex; justify-content: space-between; gap: 10px; padding: 9px 14px; border-bottom: 2px solid var(--petal-100); font-size: .92rem; }
+.line:last-child { border-bottom: 0; }
+.totalRow { background: var(--tint-fern); font-weight: 800; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }

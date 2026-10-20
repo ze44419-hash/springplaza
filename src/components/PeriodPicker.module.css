@@ -1,0 +1,8 @@
+/* ===== Period selector (accounting screens) ===== */
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.preset { min-height: 44px; padding: 0 16px; border: 0; border-radius: 14px; background: var(--surface); font-weight: 700; box-shadow: inset 0 0 0 2px var(--petal-200); cursor: pointer; color: var(--bark); }
+.preset:hover { background: var(--petal-100); }
+.on, .on:hover { background: var(--fern); color: #fff; box-shadow: none; }
+.dates { display: flex; align-items: center; gap: 8px; }
+.date { width: 168px; }
+.bad { font-size: .85rem; font-weight: 700; color: var(--danger); }

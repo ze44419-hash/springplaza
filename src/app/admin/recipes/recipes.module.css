@@ -1,0 +1,22 @@
+/* ===== Admin → Recipes: product list on the start side, recipe editor on the end side ===== */
+.layout { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 768px) { .layout { grid-template-columns: 300px minmax(0, 1fr); } }
+.sidebar { max-height: 70dvh; overflow-y: auto; padding: 8px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.group { margin-bottom: 8px; }
+.groupTitle { margin: 0; padding: 4px 12px; font-size: .82rem; font-weight: 700; color: var(--bark-400); }
+.product { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 46px; padding: 0 12px; border: 0; border-radius: 12px; background: transparent; text-align: start; font-weight: 600; cursor: pointer; }
+.product:hover { background: var(--petal-100); }
+.productOn, .productOn:hover { background: var(--fern); color: #fff; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sun); }
+.dotHas { background: var(--fern); }
+.productOn .dot { background: #fff; }
+
+.editor { display: grid; gap: 16px; padding: 20px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.editorTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; }
+.sub { margin: 0; color: var(--bark-500); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ing { flex: 1 1 180px; min-width: 180px; }
+.qty { width: 128px; }
+.unit { width: 40px; font-weight: 600; color: var(--bark-500); }
+.info { padding: 8px 14px; border-radius: 12px; background: var(--petal); }
+.ok { padding: 8px 14px; border-radius: 12px; background: var(--fern-light); color: var(--fern-ink); font-weight: 700; }

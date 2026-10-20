@@ -1,0 +1,75 @@
+/* ===== Order taking (shared by the captain screen and the cashier's "new order") =====
+   Everything is sized for fingers: tiles ≥ 130px tall, controls ≥ 44px, category tabs ≥ 52px. */
+
+.layout { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1024px) { .layout { grid-template-columns: minmax(0, 1fr) 400px; } }
+
+.topRow { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.destTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.6rem; font-weight: 800; }
+
+/* ---- category tabs ---- */
+.tabs { display: flex; gap: 8px; margin: 0 -12px 16px; padding: 0 12px 4px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: none; min-height: 52px; padding: 0 24px; border: 0; border-radius: 16px; background: var(--surface); color: var(--bark); font-size: 1.1rem; font-weight: 700; box-shadow: inset 0 0 0 2px var(--petal-200); cursor: pointer; transition: background .12s; }
+.tab:hover { background: var(--petal-100); }
+.tabActive, .tabActive:hover { background: var(--blossom-dark); color: #fff; box-shadow: none; }
+
+/* ---- product grid ---- */
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-bottom: 110px; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .grid { padding-bottom: 0; } }
+@media (min-width: 1280px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.tile { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; min-height: 134px; padding: 12px; overflow: hidden; text-align: start; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); cursor: pointer; contain: layout paint; transition: transform .08s, border-color .12s; }
+.tile:hover { border-color: var(--fern-soft); }
+.tile:active { transform: scale(.97); }
+.tile:disabled { opacity: .4; cursor: not-allowed; }
+.tileOn { border-color: var(--fern); }
+.thumb { width: 100%; height: 82px; border-radius: 14px; object-fit: cover; background: var(--petal-100); }
+.thumbLetter { display: grid; place-items: center; width: 100%; height: 82px; border-radius: 14px; background: var(--petal-100); color: var(--fern-soft); font-family: var(--font-display-stack); font-size: 2.4rem; font-weight: 800; }
+.name { font-weight: 700; line-height: 1.4; }
+.price { font-size: .95rem; font-weight: 700; color: var(--fern-ink); }
+.badge { position: absolute; top: 8px; inset-inline-end: 8px; display: grid; place-items: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 999px; background: var(--fern); color: #fff; font-weight: 800; }
+
+/* ---- table picker ---- */
+.pickTitle { margin: 0 0 16px; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+.quickDest { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.quickDest button { min-height: 76px; font-size: 1.2rem; }
+.tables { display: grid; gap: 12px; margin-top: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 640px) { .tables { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .tables { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.table { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); cursor: pointer; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; transition: transform .08s, border-color .12s; }
+.table:hover { border-color: var(--fern-soft); }
+.table:active { transform: scale(.95); }
+.tableState { margin-top: 2px; font-family: var(--font-body-stack); font-size: .8rem; font-weight: 600; color: var(--bark-500); }
+.tableBusy { border-color: var(--sun); background: var(--sun-light); }
+.tableReady { border-color: var(--fern); background: var(--fern-light); animation: pulse 1.6s ease-out infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(226, 85, 123, .5); } 50% { box-shadow: 0 0 0 10px rgba(226, 85, 123, 0); } }
+@media (prefers-reduced-motion: reduce) { .tableReady { animation: none; } }
+
+/* ---- cart ---- */
+.aside { display: none; }
+@media (min-width: 1024px) { .aside { display: block; } }
+.asideCard { position: sticky; top: 92px; padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.cart { display: grid; gap: 12px; }
+.lines { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.line { padding: 12px; border-radius: 16px; background: var(--petal); }
+.lineTop { display: flex; align-items: center; gap: 8px; }
+.lineInfo { flex: 1; min-width: 0; }
+.lineName { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.lineSub { margin: 0; font-size: .88rem; color: var(--bark-500); }
+.stepper { display: flex; align-items: center; gap: 4px; }
+.stepBtn { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 2px var(--petal-200); cursor: pointer; }
+.stepQty { width: 32px; text-align: center; font-size: 1.15rem; font-weight: 800; }
+.optToggle { display: flex; align-items: center; gap: 4px; margin-top: 8px; padding: 0; border: 0; background: none; color: var(--fern-ink); font-weight: 700; font-size: .92rem; cursor: pointer; }
+.opts { display: grid; gap: 8px; margin-top: 8px; }
+.mods { display: flex; flex-wrap: wrap; gap: 8px; }
+.mod { min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 2px var(--petal-200); font-weight: 700; cursor: pointer; }
+.modOn { background: var(--fern); color: #fff; box-shadow: inset 0 0 0 2px var(--fern); }
+.total { display: flex; align-items: center; justify-content: space-between; padding: 0 4px; font-family: var(--font-display-stack); font-size: 1.6rem; font-weight: 800; }
+.send { min-height: 58px; font-size: 1.2rem; }
+
+/* ---- mobile bottom bar ---- */
+.bar { position: fixed; inset-inline: 0; bottom: 0; z-index: 40; padding: 12px 12px max(12px, env(safe-area-inset-bottom)); background: var(--surface); border-top: 2px solid var(--petal-200); }
+@media (min-width: 1024px) { .bar { display: none; } }
+.barBtn { width: 100%; justify-content: space-between; }
