@@ -1,0 +1,17 @@
+/* ===== Generic admin list + add/edit dialog ===== */
+.head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; }
+.err { margin-bottom: 12px; }
+.tableWrap { overflow-x: auto; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.table { width: 100%; min-width: 520px; border-collapse: collapse; }
+.table thead { border-bottom: 2px solid var(--petal-100); }
+.table tbody tr + tr { border-top: 2px solid var(--petal-100); }
+.cellActions { display: flex; justify-content: flex-end; gap: 4px; }
+.form { display: grid; gap: 16px; }
+.hint { margin: 4px 0 0; font-size: .82rem; color: var(--bark-400); }
+.check { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 600; }
+.check input { width: 20px; height: 20px; accent-color: var(--fern); }
+.imageRow { display: flex; align-items: center; gap: 12px; }
+.imageThumb { width: 80px; height: 80px; border-radius: 16px; object-fit: cover; }
+.imageEmpty { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 16px; background: var(--petal-100); color: var(--bark-400); }
+.upload { cursor: pointer; }

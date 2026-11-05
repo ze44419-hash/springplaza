@@ -1,0 +1,28 @@
+/* ===== Admin → Inventory ===== */
+.page { display: grid; gap: 32px; }
+.sectionTitle { margin: 0 0 12px; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; }
+.ledger { overflow-x: auto; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.table thead { border-bottom: 2px solid var(--petal-100); }
+.table tbody tr + tr { border-top: 2px solid var(--petal-100); }
+.nowrap { white-space: nowrap; }
+.strong { font-weight: 700; }
+.note { color: var(--bark-500); }
+.empty { color: var(--bark-400); }
+.in { color: var(--fern-ink); font-weight: 800; }
+.out { color: var(--danger); font-weight: 800; }
+.stock { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.stockLow { color: var(--danger); }
+.form { display: grid; gap: 16px; }
+.current { margin: 0; padding: 8px 14px; border-radius: 12px; background: var(--petal); }
+.hint { margin: 4px 0 0; font-size: .82rem; color: var(--bark-400); }
+.qtyInput { font-size: 1.3rem !important; font-weight: 700; }
+
+/* ---- tabs + per-warehouse balances ---- */
+.tabs { display: flex; gap: 6px; overflow-x: auto; padding: 4px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius); }
+.tab { flex: none; padding: 10px 16px; border: 0; border-radius: 12px; background: transparent; font-weight: 700; color: var(--bark-500); cursor: pointer; }
+.tab:hover { background: var(--petal-100); }
+.tabOn, .tabOn:hover { background: var(--fern); color: #fff; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.whChip { padding: 2px 10px; border-radius: 999px; background: var(--petal-100); font-size: .82rem; white-space: nowrap; }
+.muted { color: var(--bark-400); }

@@ -1,0 +1,86 @@
+/* ===== Cashier screen — page-specific styles =====
+   Layout: shift bar on top, then a 3-column board (new → preparing → ready), then today's payments.
+   Colour carries state: pink ring = needs attention, amber = in progress, green = ready. */
+
+.page { max-width: 1500px; margin: 0 auto; padding: 14px; display: grid; gap: 18px; }
+
+/* ---- shift bar ---- */
+.shiftBar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 14px 18px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.shiftTitle { display: flex; align-items: center; gap: 10px; font-family: var(--font-display-stack); font-size: 1.15rem; font-weight: 700; }
+.stat { line-height: 1.35; }
+.statLabel { font-size: .8rem; font-weight: 600; color: var(--bark-400); }
+.statValue { font-family: var(--font-display-stack); font-size: 1.2rem; font-weight: 700; }
+.barActions { margin-inline-start: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* ---- auto-print switch ---- */
+.switch { position: relative; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; border-radius: 999px; background: var(--petal-100); font-weight: 700; font-size: .92rem; cursor: pointer; user-select: none; }
+.switch input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.track { position: relative; width: 44px; height: 24px; border-radius: 999px; background: var(--petal-200); transition: background .15s; flex: none; }
+.track::after { content: ''; position: absolute; top: 3px; inset-inline-start: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm); transition: transform .15s; }
+.switch input:checked + .track { background: var(--fern); }
+.switch input:checked + .track::after { transform: translateX(-20px); }
+.switch input:focus-visible + .track { outline: 3px solid var(--blossom); outline-offset: 2px; }
+
+/* ---- board ---- */
+.board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+@media (max-width: 1023px) { .board { grid-template-columns: 1fr; } }
+.col { min-width: 0; padding: 12px; border-radius: var(--radius-lg); background: var(--col-bg); }
+.colHead { display: flex; align-items: center; gap: 8px; padding: 2px 6px 12px; font-family: var(--font-display-stack); font-size: 1.2rem; font-weight: 700; }
+.count { padding: 0 10px; border-radius: 999px; background: var(--surface); font-size: .85rem; color: var(--bark-500); }
+.stack { display: grid; gap: 12px; }
+.emptyCol { padding: 28px 8px; text-align: center; font-size: .92rem; color: var(--bark-400); }
+
+/* ---- order card ---- */
+.card { padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); contain: layout paint; }
+.cardNew { border-color: var(--blossom); animation: ring 1.6s ease-out infinite; }
+@keyframes ring { 0%, 100% { box-shadow: 0 0 0 0 rgba(226, 85, 123, .5); } 50% { box-shadow: 0 0 0 9px rgba(226, 85, 123, 0); } }
+@media (prefers-reduced-motion: reduce) { .cardNew { animation: none; } }
+.cardHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.dest { font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 800; line-height: 1.25; }
+.meta { margin-top: 2px; font-size: .82rem; font-weight: 600; color: var(--bark-400); }
+.items { display: grid; gap: 4px; margin: 12px 0; padding: 0; list-style: none; font-size: 1rem; }
+.qty { font-weight: 800; }
+.mods { color: var(--bark-500); }
+.itemNote { display: block; padding-inline-start: 22px; font-size: .84rem; color: var(--bark-500); }
+.orderNote { margin-bottom: 12px; padding: 8px 12px; border-radius: 12px; background: var(--sun-light); font-size: .95rem; }
+.flag { margin-bottom: 8px; font-size: .82rem; font-weight: 700; }
+.flagWait { color: var(--sun-ink); }
+.flagErr { color: var(--danger); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.grow { flex: 1 1 auto; }
+
+/* ---- paid today ---- */
+.sectionTitle { margin: 0 0 8px; font-family: var(--font-display-stack); font-size: 1.25rem; font-weight: 700; }
+.paidList { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.paidRow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; font-size: .95rem; border-bottom: 2px solid var(--petal-100); }
+.paidRow:last-child { border-bottom: 0; }
+.spacer { margin-inline-start: auto; font-weight: 800; }
+
+/* ---- new order overlay ---- */
+.overlay { position: fixed; inset: 0; z-index: 40; overflow-y: auto; background: var(--petal); }
+.overlayBar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--surface); border-bottom: 2px solid var(--petal-200); }
+.overlayTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.25rem; font-weight: 700; }
+.overlayBody { max-width: 1400px; margin: 0 auto; padding: 14px; }
+
+/* ---- open shift ---- */
+.openShift { max-width: 520px; margin: 0 auto; display: grid; gap: 16px; padding: 24px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.openShift h1 { margin: 0; font-size: 2rem; font-weight: 800; }
+.hint { margin: 0; color: var(--bark-500); }
+.bigInput { font-size: 1.6rem !important; font-weight: 700; text-align: start; }
+
+/* ---- modals: summary rows, payment ---- */
+.row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 12px; }
+.rowStrong { font-size: 1.15rem; font-weight: 700; }
+.rowOk { background: var(--fern-light); }
+.rowWarn { background: var(--sun-light); }
+.stackY { display: grid; gap: 14px; }
+.warnBox { padding: 10px 14px; border-radius: 12px; background: var(--sun-light); color: var(--sun-ink); font-weight: 600; font-size: .95rem; }
+.payItems { padding: 12px; border-radius: 14px; background: var(--petal); font-size: .95rem; display: grid; gap: 2px; }
+.payItems div { display: flex; justify-content: space-between; gap: 12px; }
+.payTotal { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-display-stack); font-size: 1.9rem; font-weight: 800; }
+.methods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.method { min-height: 58px; font-size: 1.15rem; }
+.quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.change { padding: 8px 14px; border-radius: 12px; background: var(--fern-light); color: var(--fern-ink); font-size: 1.15rem; font-weight: 700; }
+.check { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 600; }
+.check input { width: 20px; height: 20px; accent-color: var(--fern); }

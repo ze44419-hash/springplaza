@@ -1,0 +1,64 @@
+/* =====================================================================================================
+   PRINT — one place for everything that ends up on paper.
+
+   Two print modes, chosen by a class on <html>:
+
+   1) THERMAL (default)  — cafe receipts / shift hand-over / kitchen tickets on 58 / 80 mm rolls.
+      Content is portalled into #print-root (see components/print/Print.tsx → usePrint). The whole app (#app-root) is hidden.
+      The roll width is injected at print time as `@page { size: <n>mm auto; margin: 0 }` and removed afterwards.
+
+   2) DOCUMENT (html.doc-print) — A4 contracts and accounting reports, printed straight from the page that is on screen.
+      Enabled by <PrintDocument> or printPage() (components/print). Chrome (header, nav, buttons) is hidden and the
+      page is forced to black-on-white, whatever the current theme (dark mode included).
+   ===================================================================================================== */
+
+/* default paper = A4 with 10 mm margins (thermal jobs override it while they print) */
+@page { size: A4; margin: 10mm; }
+
+/* ---------- screen: thermal paper preview container ---------- */
+#print-root { display: none; }
+.paper { margin: 0 auto; color: #000; background: #fff; font-family: var(--font-body-stack); font-size: var(--paper-fs, 13px); font-weight: 600; line-height: 1.55; }
+.paper-58 { width: 48mm; }   /* 58 mm roll ≈ 48 mm printable */
+.paper-80 { width: 72mm; }   /* 80 mm roll ≈ 72 mm printable */
+.paper h1 { font-size: calc(var(--paper-fs, 13px) + 5px); font-weight: 800; text-align: center; margin: 0; }
+.paper .center { text-align: center; }
+.paper .row { display: flex; justify-content: space-between; gap: 6px; }
+.paper .row > span:first-child { flex: 1; min-width: 0; word-break: break-word; }
+.paper .row > span:last-child { white-space: nowrap; }
+.paper .sub { padding-inline-start: 10px; font-size: calc(var(--paper-fs, 13px) - 1px); }
+.paper .rule { border-top: 1px dashed #000; margin: 6px 0; }
+.paper .rule.solid { border-top-style: solid; } .paper .rule.double { border-top: 3px double #000; } .paper .rule.none { border-top: 0; margin: 4px 0; }
+.paper .copy { break-after: page; padding-bottom: 6px; } .paper .copy:last-child { break-after: auto; }
+.paper .logo { display: block; margin: 0 auto 6px; max-width: 70%; max-height: 22mm; filter: grayscale(1) contrast(1.4); }
+.paper .big { font-size: calc(var(--paper-fs, 13px) + 3px); font-weight: 800; }
+
+/* ---------- screen: A4 document preview (PrintDocument) ---------- */
+.doc-toolbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px; }
+.a4-sheet { width: 210mm; max-width: 100%; min-height: 297mm; margin: 12px auto; padding: 16mm 18mm; box-sizing: border-box; background: #fff; color: #111; box-shadow: 0 2px 16px rgba(0, 0, 0, .25); }
+@media screen and (max-width: 820px) { .a4-sheet { padding: 10mm 6mm; min-height: 0; } }
+
+/* ---------- print ---------- */
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #fff !important; color: #000 !important; margin: 0 !important; padding: 0 !important; color-scheme: light; }
+  .no-print { display: none !important; }
+
+  /* THERMAL: only the portalled receipt is visible */
+  html:not(.doc-print) #app-root { display: none !important; }
+  html:not(.doc-print) #print-root { display: block !important; }
+  .paper { break-inside: avoid; }
+
+  /* DOCUMENT: the page itself is printed, restyled for paper */
+  html.doc-print #print-root { display: none !important; }
+  html.doc-print #app-root { display: block !important; }
+  html.doc-print #app-root, html.doc-print #app-root * { color: #000 !important; background-color: transparent !important; border-color: #555 !important; box-shadow: none !important; text-shadow: none !important; backdrop-filter: none !important; }
+  html.doc-print #app-root { background: #fff !important; }
+  html.doc-print nav, html.doc-print aside, html.doc-print button, html.doc-print [role='dialog'], html.doc-print [aria-live] { display: none !important; }
+  html.doc-print #app-root .shade, html.doc-print #app-root .shade > * { background-color: #eee !important; }               /* header / total rows that should stay shaded */
+  html.doc-print table { width: 100% !important; min-width: 0 !important; border-collapse: collapse; }
+  html.doc-print thead { display: table-header-group; }                      /* repeat column headers on every page */
+  html.doc-print tr, html.doc-print .avoid-break { break-inside: avoid; }
+  html.doc-print h1, html.doc-print h2, html.doc-print h3 { break-after: avoid; }
+  html.doc-print [style*='overflow'], html.doc-print .tableWrap { overflow: visible !important; }
+  html.doc-print .a4-sheet { width: auto !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; max-width: none !important; }
+}

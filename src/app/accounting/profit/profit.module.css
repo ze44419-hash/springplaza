@@ -1,0 +1,23 @@
+/* ===== Accounting → Profit distribution ===== */
+.page { display: grid; gap: 22px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.8rem; font-weight: 800; }
+.sectionTitle { margin: 0 0 8px; font-family: var(--font-display-stack); font-size: 1.3rem; font-weight: 700; }
+.card { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.calc { display: grid; gap: 6px; padding: 16px; }
+.row { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
+.net { padding: 10px 0 0; margin-top: 4px; border-top: 2px dashed var(--petal-200); font-family: var(--font-display-stack); font-size: 1.4rem; font-weight: 800; color: var(--fern-ink); }
+.netLoss { color: var(--danger); }
+.tableWrap { overflow-x: auto; border-top: 2px solid var(--petal-100); }
+.table { width: 100%; min-width: 420px; border-collapse: collapse; }
+.table thead { border-bottom: 2px solid var(--petal-100); }
+.table tbody tr + tr { border-top: 2px solid var(--petal-100); }
+.table tfoot td { border-top: 2px solid var(--petal-200); font-weight: 800; background: var(--tint-fern); }
+.warn { margin: 0; padding: 12px 16px; border-radius: var(--radius); background: var(--sun-light); color: var(--sun-ink); font-size: .92rem; font-weight: 700; }
+.confirm { display: grid; gap: 12px; padding: 16px; border-top: 2px solid var(--petal-100); }
+.history { display: grid; gap: 10px; }
+.hItem { background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.hSum { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; cursor: pointer; list-style: none; font-weight: 700; }
+.hSum::-webkit-details-marker { display: none; }
+.hMeta { font-size: .82rem; font-weight: 600; color: var(--bark-500); }
+.hBody { border-top: 2px solid var(--petal-100); }
+.muted { margin: 0; padding: 16px; color: var(--bark-400); }

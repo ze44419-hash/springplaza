@@ -1,0 +1,71 @@
+/* ===== Hall → booking editor with live cost calculator ===== */
+.form { display: grid; gap: 22px; }
+.block { display: grid; gap: 12px; }
+.h { margin: 0; font-family: var(--font-display-stack); font-size: 1.15rem; font-weight: 800; }
+.hRow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.grid2 { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.textarea { min-height: 76px; padding-top: 12px; resize: vertical; }
+.muted { margin: 0; color: var(--bark-400); font-size: .9rem; }
+.warn { display: flex; align-items: center; gap: 8px; margin: 0; padding: 10px 14px; border-radius: 14px; background: var(--danger-light); color: var(--danger); font-size: .9rem; font-weight: 700; }
+
+.rates { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.rate { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 2px solid var(--petal-200); border-radius: var(--radius); background: var(--surface); cursor: pointer; }
+.rate:hover { border-color: var(--fern-soft); }
+.rateOn { border-color: var(--fern); background: var(--tint-fern); }
+.rate:focus-within { outline: 3px solid var(--blossom); outline-offset: 2px; }
+.rateName { font-weight: 700; }
+.ratePrice { font-family: var(--font-display-stack); font-size: 1.2rem; font-weight: 800; color: var(--fern-ink); }
+
+.items { display: grid; gap: 8px; }
+.item { display: grid; grid-template-columns: minmax(0, 1fr) auto 92px; align-items: center; gap: 10px; padding: 10px 12px; border: 2px solid var(--petal-200); border-radius: var(--radius); background: var(--surface); }
+.itemOn { border-color: var(--fern); background: var(--tint-fern); }
+.itemInfo { min-width: 0; }
+.itemName { margin: 0; font-weight: 700; }
+.itemPrice { margin: 0; font-size: .82rem; color: var(--bark-500); }
+.lineTotal { margin: 0; text-align: end; font-weight: 800; font-size: .92rem; }
+@media (max-width: 520px) { .item { grid-template-columns: minmax(0, 1fr) auto; } .lineTotal { grid-column: 1 / -1; text-align: start; } .lineTotal:empty { display: none; } }
+
+.stepper { display: inline-flex; align-items: center; border: 2px solid var(--petal-200); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.stepper button { display: grid; place-items: center; width: 40px; height: 40px; border: 0; background: transparent; color: var(--bark); cursor: pointer; }
+.stepper button:hover:not(:disabled) { background: var(--petal-100); }
+.stepper button:disabled { opacity: .35; cursor: default; }
+.qty { width: 52px; height: 40px; border: 0; border-inline: 2px solid var(--petal-200); background: transparent; color: var(--bark); text-align: center; font-weight: 800; outline: none; }
+.qty:focus { background: var(--petal-100); }
+
+.summary { position: sticky; bottom: -20px; z-index: 5; display: grid; gap: 6px; margin: 0 -20px -20px; padding: 16px 20px 20px; border-top: 2px solid var(--petal-200); background: var(--surface); box-shadow: 0 -12px 24px -16px rgba(38, 33, 47, .35); }
+.row { display: flex; justify-content: space-between; gap: 12px; font-size: .95rem; font-weight: 600; }
+.total { padding: 8px 0; border-block: 2px dashed var(--petal-200); font-family: var(--font-display-stack); font-size: 1.35rem; font-weight: 800; color: var(--fern-ink); }
+.btns { display: flex; gap: 8px; margin-top: 6px; }
+
+/* ===== Slot picker (نهاري / مسائي / ليلي) ===== */
+.form {
+  --k-day-bd: #3b82f6;  --k-day-bg: #dbeafe;  --k-day-fg: #1e3a8a;
+  --k-eve-bd: #f97316;  --k-eve-bg: #ffedd5;  --k-eve-fg: #7c2d12;
+  --k-ngt-bd: #8b5cf6;  --k-ngt-bg: #ede9fe;  --k-ngt-fg: #4c1d95;
+  --k-full-bg: #fee2e2; --k-full-bd: #dc2626; --k-full-fg: #7f1d1d;
+}
+:global([data-theme='dark']) .form {
+  --k-day-bd: #4f8ff0;  --k-day-bg: #12233b;  --k-day-fg: #bfdbfe;
+  --k-eve-bd: #fb923c;  --k-eve-bg: #3a2008;  --k-eve-fg: #fed7aa;
+  --k-ngt-bd: #a78bfa;  --k-ngt-bg: #261b4d;  --k-ngt-fg: #ddd6fe;
+  --k-full-bg: #3b1214; --k-full-bd: #ef4444; --k-full-fg: #fecaca;
+}
+.slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 96px; padding: 10px 6px; border: 2px solid var(--petal-200); border-radius: var(--radius); background: var(--surface); color: var(--bark); text-align: center; cursor: pointer; transition: border-color .15s, background-color .15s, transform .1s; }
+.slot:hover:not(:disabled) { border-color: var(--fern-soft); }
+.slot:active:not(:disabled) { transform: scale(.98); }
+.slot:focus-visible { outline: 3px solid var(--blossom); outline-offset: 2px; }
+.slotIcon { display: grid; place-items: center; height: 26px; opacity: .85; }
+.slotName { font-weight: 800; font-size: 1rem; }
+.slotNote { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .75rem; color: var(--bark-500); }
+.slotOn[data-slot='day'] { border-color: var(--k-day-bd); background: var(--k-day-bg); color: var(--k-day-fg); }
+.slotOn[data-slot='evening'] { border-color: var(--k-eve-bd); background: var(--k-eve-bg); color: var(--k-eve-fg); }
+.slotOn[data-slot='night'] { border-color: var(--k-ngt-bd); background: var(--k-ngt-bg); color: var(--k-ngt-fg); }
+.slotOn .slotNote { color: inherit; opacity: .85; }
+.slotTaken, .slotTaken:disabled { border-style: dashed; border-color: var(--k-full-bd); background: var(--k-full-bg); color: var(--k-full-fg); cursor: not-allowed; opacity: .9; }
+.slotTaken .slotNote { color: inherit; }
+.slot:disabled:not(.slotTaken) { opacity: .5; cursor: default; }
+.fullAlert { display: flex; align-items: center; gap: 8px; margin: 0; padding: 12px 14px; border: 2px solid var(--k-full-bd); border-radius: 14px; background: var(--k-full-bg); color: var(--k-full-fg); font-weight: 800; }
+.info { display: flex; align-items: center; gap: 8px; margin: 0; padding: 10px 14px; border-radius: 14px; background: var(--tint-fern); color: var(--bark-500); font-size: .88rem; font-weight: 600; }
+@media (max-width: 380px) { .slotNote { font-size: .68rem; } .slot { min-height: 88px; } }

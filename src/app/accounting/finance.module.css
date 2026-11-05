@@ -1,0 +1,18 @@
+/* ===== Treasury / Receivables / Reports / Suppliers / Assets ===== */
+.page { display: grid; gap: 16px; }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.8rem; font-weight: 800; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); padding: 14px; }
+.k { margin: 0; font-size: .8rem; font-weight: 700; color: var(--bark-500); }
+.v { margin: 4px 0 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 800; }
+.tableWrap { overflow-x: auto; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .9rem; }
+.table th { text-align: start; padding: 10px 12px; font-size: .78rem; color: var(--bark-500); border-bottom: 2px solid var(--petal-100); white-space: nowrap; }
+.table td { padding: 10px 12px; border-top: 1px solid var(--petal-100); vertical-align: top; }
+.in { color: var(--fern-ink); font-weight: 700; } .out { color: #b91c1c; font-weight: 700; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.form { display: grid; gap: 14px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+@media print { .noPrint { display: none !important; } }

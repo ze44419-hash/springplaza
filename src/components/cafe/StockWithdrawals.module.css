@@ -1,0 +1,43 @@
+/* ===== سحب الخامات من المخازن (عهدة الباريستا) — مستخدم في شاشة الكاشير ولوحة الأدمن ===== */
+.wrap { display: grid; gap: 20px; }
+.head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 800; }
+.sub { margin: 2px 0 0; font-size: .9rem; color: var(--bark-500); }
+.group { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-family: var(--font-display-stack); font-size: 1.15rem; font-weight: 700; }
+.count { padding: 0 10px; border-radius: 999px; background: var(--petal-100); font-size: .85rem; color: var(--bark-500); }
+.list { display: grid; gap: 12px; }
+
+.card { display: grid; gap: 12px; padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.cardOpen { border-color: var(--sun); background: var(--sun-wash); }
+.cardHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.who { margin: 0; }
+.meta { margin: 2px 0 0; font-size: .82rem; color: var(--bark-400); }
+.note { margin: 6px 0 0; padding: 4px 10px; border-radius: 10px; background: var(--petal); font-size: .88rem; color: var(--bark-500); }
+.tableWrap { overflow-x: auto; border: 2px solid var(--petal-100); border-radius: var(--radius); }
+.table { width: 100%; min-width: 440px; border-collapse: collapse; }
+.table thead { background: var(--petal); }
+.table tbody tr + tr { border-top: 2px solid var(--petal-100); }
+.strong { font-weight: 700; }
+.rem { color: var(--fern-ink); }
+.bad { color: var(--danger); font-weight: 800; }
+.muted { font-size: .82rem; color: var(--bark-400); }
+
+.form { display: grid; gap: 14px; }
+.line { display: grid; gap: 4px; }
+.lineMain { display: flex; align-items: center; gap: 8px; }
+.ingSel { flex: 1; min-width: 0; }
+.qtyIn { width: 120px; flex: none; font-weight: 700; text-align: center; }
+.unit { min-width: 28px; font-size: .9rem; color: var(--bark-500); }
+.avail { margin: 0; padding-inline-start: 4px; font-size: .82rem; color: var(--bark-400); }
+.hintBox { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--petal); font-size: .9rem; color: var(--bark-500); }
+.check { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+
+.settleRow { display: grid; gap: 6px; padding: 12px; border: 2px solid var(--petal-200); border-radius: var(--radius); }
+.settleInfo { display: grid; gap: 2px; }
+.settleIn { display: flex; align-items: center; gap: 8px; }
+.shortage { margin: 0; padding: 4px 10px; border-radius: 10px; background: var(--danger-light); font-size: .85rem; font-weight: 700; color: var(--danger); }
+
+@media (max-width: 520px) {
+  .lineMain { flex-wrap: wrap; }
+  .qtyIn { width: 100px; }
+}

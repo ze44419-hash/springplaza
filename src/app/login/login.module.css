@@ -1,0 +1,14 @@
+/* ===== Login — page-specific styles =====
+   The glass card lives in components/ui/modern-stunning-sign-in; the gradient in components/ui/elegant-dark-pattern.
+   Here: page layout, the theme switch position and the three trust badges. */
+.stage { position: relative; display: flex; min-height: 100dvh; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 72px 16px 40px; }
+.toggle { position: absolute; top: 16px; inset-inline-end: 16px; z-index: 20; }
+.brandTag { position: absolute; top: 20px; inset-inline-start: 20px; z-index: 20; display: flex; align-items: center; gap: 10px; font-family: var(--font-display-stack); font-weight: 800; font-size: 1.05rem; color: rgb(var(--tag-ink, 255 255 255) / .9); }
+:global([data-theme='light']) .brandTag { --tag-ink: 38 33 47; }
+@media (max-width: 420px) { .brandTag { display: none; } }
+
+.badges { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: .9rem; font-weight: 600; color: rgba(255, 255, 255, .72); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.badge svg { color: #7ed3ae; }
+:global([data-theme='light']) .badge { color: rgb(var(--c-bark-500)); background: rgba(255, 255, 255, .7); border-color: rgba(38, 33, 47, .08); }
+:global([data-theme='light']) .badge svg { color: var(--fern); }

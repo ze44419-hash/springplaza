@@ -1,0 +1,12 @@
+/* ===== Accounting → Partners ===== */
+.page { display: grid; gap: 20px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.8rem; font-weight: 800; }
+.meter { display: grid; gap: 8px; padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.meterOk { border-color: var(--fern); background: var(--tint-fern); }
+.meterBad { border-color: var(--sun); background: var(--sun-light); }
+.meterTop { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-weight: 800; }
+.meterValue { font-family: var(--font-display-stack); font-size: 1.6rem; }
+.track { height: 10px; overflow: hidden; border-radius: 999px; background: var(--petal-100); }
+.fill { height: 100%; border-radius: inherit; background: var(--fern); transition: width .25s ease; }
+.fillBad { background: var(--sun); }
+.msg { margin: 0; font-size: .9rem; font-weight: 600; color: var(--bark-500); }

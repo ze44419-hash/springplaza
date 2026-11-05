@@ -1,0 +1,11 @@
+/* ===== Admin → Accounts ===== */
+.head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 1.6rem; font-weight: 800; }
+.list { margin-top: 12px; overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px; border-bottom: 2px solid var(--petal-100); }
+.row:last-child { border-bottom: 0; }
+.who { flex: 1 1 160px; min-width: 160px; }
+.name { margin: 0; font-weight: 700; }
+.role { width: 160px; }
+.form { display: grid; gap: 16px; }
+.hint { margin: 4px 0 0; font-size: .82rem; color: var(--bark-400); }

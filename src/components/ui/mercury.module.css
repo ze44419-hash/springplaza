@@ -1,0 +1,22 @@
+/* Liquid-mercury backdrop (adapted from the supplied "Neural Access" login). Dark stage, silver blobs. */
+.wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 100dvh; overflow: hidden; background: #050505; color: #fff; }
+.wrapper * { box-sizing: border-box; }
+
+.stage { position: absolute; inset: 0; z-index: 0; opacity: .6; filter: url(#spring-gooey); --mx: 0; --my: 0; pointer-events: none; }
+/* The goo filter is the expensive part: skip it on phones / when the user asks for less motion. */
+@media (max-width: 640px), (prefers-reduced-motion: reduce) { .stage { filter: none; opacity: .45; } }
+
+/* outer element = mouse parallax (transform only, no layout), inner = floating animation */
+.drift { position: absolute; transform: translate3d(calc(var(--mx) * var(--k) * 1px), calc(var(--my) * var(--k) * 1px), 0); transition: transform .25s ease-out; will-change: transform; }
+.blob { width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #e0e0e0, #888); filter: blur(18px); box-shadow: inset -10px -10px 20px rgba(0, 0, 0, .5), 10px 10px 30px rgba(255, 255, 255, .2); animation: float 20s infinite alternate ease-in-out; will-change: transform; }
+.paused .blob { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .blob { animation: none; } }
+@keyframes float {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(10vw, 20vh, 0) scale(1.2); }
+  66% { transform: translate3d(-5vw, 10vh, 0) scale(.8); }
+  100% { transform: translate3d(5vw, -10vh, 0) scale(1.1); }
+}
+
+.content { position: relative; z-index: 10; width: 100%; display: flex; justify-content: center; padding: 24px 16px; }
+.svgHidden { position: absolute; width: 0; height: 0; }

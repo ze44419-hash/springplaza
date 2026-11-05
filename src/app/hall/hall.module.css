@@ -1,0 +1,100 @@
+/* ===== Hall shell + calendar page ===== */
+.content { max-width: 1152px; margin: 0 auto; padding: 16px; }
+@media (min-width: 640px) { .content { padding: 24px; } }
+
+.page {
+  display: grid; gap: 20px;
+  /* ألوان حالة اليوم — فاتح */
+  --k-day-bg: #dbeafe;  --k-day-bd: #3b82f6;  --k-day-fg: #1e3a8a;
+  --k-eve-bg: #ffedd5;  --k-eve-bd: #f97316;  --k-eve-fg: #7c2d12;
+  --k-ngt-bg: #ede9fe;  --k-ngt-bd: #8b5cf6;  --k-ngt-fg: #4c1d95;
+  --k-two-bg: #fef9c3;  --k-two-bd: #eab308;  --k-two-fg: #713f12;
+  --k-full-bg: #fee2e2; --k-full-bd: #dc2626; --k-full-fg: #7f1d1d;
+}
+/* ألوان حالة اليوم — الثيم الداكن */
+:global([data-theme='dark']) .page {
+  --k-day-bg: #12233b;  --k-day-bd: #4f8ff0;  --k-day-fg: #bfdbfe;
+  --k-eve-bg: #3a2008;  --k-eve-bd: #fb923c;  --k-eve-fg: #fed7aa;
+  --k-ngt-bg: #261b4d;  --k-ngt-bd: #a78bfa;  --k-ngt-fg: #ddd6fe;
+  --k-two-bg: #36300a;  --k-two-bd: #facc15;  --k-two-fg: #fef08a;
+  --k-full-bg: #3b1214; --k-full-bd: #ef4444; --k-full-fg: #fecaca;
+}
+@media (min-width: 1024px) { .page { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-items: start; } }
+.head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; grid-column: 1 / -1; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+
+/* --- calendar card --- */
+.cal { padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.calTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.month { margin: 0; font-family: var(--font-display-stack); font-size: 1.35rem; font-weight: 800; }
+.navBtn { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--petal-200); border-radius: 14px; background: var(--surface); color: var(--bark); cursor: pointer; }
+.navBtn:hover { background: var(--petal-100); }
+.grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.dow { padding: 4px 0; text-align: center; font-size: .78rem; font-weight: 800; color: var(--bark-400); }
+.day { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 2px; min-height: 64px; padding: 6px; border: 2px solid var(--petal-200); border-radius: 14px; background: var(--surface); color: var(--bark); text-align: start; cursor: pointer; }
+.day:hover { border-color: var(--fern); }
+.empty { border: 0; background: transparent; cursor: default; }
+.empty:hover { border: 0; }
+.num { font-weight: 800; font-size: .95rem; }
+.past { opacity: .6; }
+.today .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 999px; background: var(--fern); color: #fff; }
+.day:disabled { cursor: default; }
+.day:disabled:hover { border-color: var(--petal-200); }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.badges { display: inline-flex; align-items: center; gap: 5px; }
+.lock { flex: none; }
+.pendingDot { display: inline-block; flex: none; width: 9px; height: 9px; border: 2px solid var(--sun); border-radius: 999px; background: var(--sun-light); }
+
+/* حالة اليوم حسب الفترات المحجوزة */
+.free { background: var(--fern-wash); }
+.kDay { background: var(--k-day-bg); border-color: var(--k-day-bd); color: var(--k-day-fg); }
+.kEvening { background: var(--k-eve-bg); border-color: var(--k-eve-bd); color: var(--k-eve-fg); }
+.kNight { background: var(--k-ngt-bg); border-color: var(--k-ngt-bd); color: var(--k-ngt-fg); }
+.kTwo { background: var(--k-two-bg); border-color: var(--k-two-bd); color: var(--k-two-fg); }
+.kFull { background: var(--k-full-bg); border-color: var(--k-full-bd); color: var(--k-full-fg);
+  background-image: repeating-linear-gradient(135deg, transparent 0 7px, rgba(220, 38, 38, .12) 7px 14px); }
+.kDay:hover, .kEvening:hover, .kNight:hover, .kTwo:hover, .kFull:hover { filter: brightness(1.06); }
+
+/* شريط الفترات الصغير: نهاري | مسائي | ليلي */
+.pips { display: flex; gap: 3px; margin-top: auto; padding-top: 4px; }
+.pip { display: block; flex: 1; height: 6px; border-radius: 3px; background: currentColor; opacity: .2; }
+.pipOn { opacity: 1; }
+.pip[data-slot='day'].pipOn { background: var(--k-day-bd); }
+.pip[data-slot='evening'].pipOn { background: var(--k-eve-bd); }
+.pip[data-slot='night'].pipOn { background: var(--k-ngt-bd); }
+.pipLegend { flex: none; width: 22px; }
+.who { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .7rem; font-weight: 700; line-height: 1.3; }
+@media (min-width: 640px) { .day { min-height: 82px; } .grid { gap: 8px; } }
+@media (min-width: 1024px) and (max-width: 1180px) { .who { font-size: .66rem; } }
+@media (max-width: 520px) { .grid { gap: 4px; } .day { min-height: 56px; padding: 4px; border-radius: 10px; } .who { display: none; } .legend { gap: 6px 12px; font-size: .76rem; } }
+.legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 14px; font-size: .82rem; font-weight: 600; color: var(--bark-500); }
+.legend + .legend { margin-top: 8px; }
+.legendItem { display: inline-flex; align-items: center; gap: 6px; }
+.legendNote { color: var(--bark-400); }
+.swatch { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 2px solid var(--petal-200); border-radius: 6px; }
+
+/* حالة اليوم داخل نافذة اليوم */
+.dayState { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; padding: 10px 14px; border-radius: 14px; background: var(--tint-fern); font-size: .92rem; font-weight: 600; }
+.dayStateFull { background: var(--k-full-bg); color: var(--k-full-fg); font-weight: 800; }
+
+/* --- upcoming list --- */
+.side { display: grid; gap: 10px; }
+.sideTitle { margin: 0; font-family: var(--font-display-stack); font-size: 1.3rem; font-weight: 700; }
+.list { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.item { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border: 0; border-bottom: 2px solid var(--petal-100); background: transparent; color: inherit; text-align: start; cursor: pointer; }
+.item:last-child { border-bottom: 0; }
+.item:hover { background: var(--petal-100); }
+.itemName { margin: 0; font-weight: 700; }
+.itemMeta { margin: 0; font-size: .82rem; color: var(--bark-500); }
+.itemTotal { font-weight: 800; white-space: nowrap; }
+
+/* --- booking details dialog --- */
+.detail { display: grid; gap: 14px; }
+.kv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+.k { margin: 0; font-size: .78rem; font-weight: 700; color: var(--bark-400); }
+.v { margin: 0; font-weight: 700; }
+.lines { overflow: hidden; border: 2px solid var(--petal-200); border-radius: var(--radius); }
+.line { display: flex; justify-content: space-between; gap: 10px; padding: 9px 14px; border-bottom: 2px solid var(--petal-100); font-size: .92rem; }
+.line:last-child { border-bottom: 0; }
+.totalRow { background: var(--tint-fern); font-weight: 800; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }

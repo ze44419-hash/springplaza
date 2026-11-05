@@ -1,0 +1,15 @@
+/* A4 hall contract. Layout only — page size, margins, colours and chrome-hiding come from print.css. */
+.contract { font-size: 12pt; line-height: 1.7; }
+.contract h1 { margin: 0; text-align: center; font-size: 22pt; }
+.contract h2 { margin: 14px 0 6px; font-size: 13pt; border-bottom: 1.5px solid #111; padding-bottom: 2px; }
+.contract .org { text-align: center; font-size: 13pt; font-weight: 700; margin: 0 0 4px; }
+.contract .meta { text-align: center; margin: 4px 0 0; }
+.contract table { width: 100%; border-collapse: collapse; }
+.contract td, .contract th { border: 1px solid #444; padding: 4px 8px; text-align: start; }
+.contract th { background: #f1f1f1; }
+.contract .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 24px; }
+.contract .tot td { font-weight: 800; background: #f1f1f1; }
+.contract .terms p { margin: 0 0 3px; }
+.contract .sign { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; text-align: center; break-inside: avoid; }
+.contract .sign div { border-top: 1px solid #111; padding-top: 6px; }
+.contract .foot { margin-top: 18px; text-align: center; font-size: 10pt; color: #444; }

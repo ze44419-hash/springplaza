@@ -1,0 +1,18 @@
+/* ===== الضيافة والطلبات الشخصية — page-specific styles ===== */
+.page { display: grid; gap: 24px; }
+.title { margin: 0; font-family: var(--font-display-stack); font-size: 2rem; font-weight: 800; }
+.sectionTitle { margin: 0 0 8px; font-family: var(--font-display-stack); font-size: 1.4rem; font-weight: 700; }
+.list { display: grid; gap: 12px; }
+.card { display: grid; gap: 10px; padding: 16px; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.cardWait { border-color: var(--sun); background: var(--sun-light); }
+.head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.name { margin: 0; font-weight: 800; }
+.meta { margin: 0; color: var(--bark-400); font-size: .85rem; }
+.items { margin: 0; padding: 0; list-style: none; color: var(--bark-500); }
+.amount { font-family: var(--font-display-stack); font-size: 1.3rem; font-weight: 800; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.grow { flex: 1; min-height: 46px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 2px solid var(--petal-100); }
+.row:last-child { border-bottom: 0; }
+.box { overflow: hidden; background: var(--surface); border: 2px solid var(--petal-200); border-radius: var(--radius-lg); }
+.muted { margin: 0; padding: 16px; color: var(--bark-500); }
